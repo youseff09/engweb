@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gatsby: Racial Ideology Elite</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,400&family=Montserrat:wght@300;600;900&display=swap');
+
+        :root {
+            --gold-bright: #fff38a;
+            --gold-main: #d4af37;
+            --gold-deep: #8b6e23;
+            --bg: radial-gradient(circle at center, #42361c 0%, #030303 100%);
+        }
+
+        /* CUSTOM MOUSE CURSOR - STAYING STYLISH */
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            perspective: 2000px;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 20px; height: 20px;
+            border: 2px solid var(--gold-bright);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s;
+            box-shadow: 0 0 15px var(--gold-main);
+        }
+
+        /* TRIPLE-TIER ART DECO BORDER */
+        .frame-layer {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .frame-1 { top: 10px; left: 10px; right: 10px; bottom: 10px; border: 1px solid var(--gold-deep); }
+        .frame-2 { top: 25px; left: 25px; right: 25px; bottom: 25px; border: 3px double var(--gold-main); }
+        
+        .corner {
+            position: fixed;
+            width: 80px; height: 80px;
+            border: 5px solid var(--gold-main);
+            z-index: 1001;
+        }
+        .tl { top: 10px; left: 10px; border-right: none; border-bottom: none; box-shadow: -5px -5px 15px var(--gold-deep); }
+        .br { bottom: 10px; right: 10px; border-left: none; border-top: none; box-shadow: 5px 5px 15px var(--gold-deep); }
+
+        /* FLOATING PANELS */
+        .deco-panel {
+            position: absolute;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            z-index: -1;
+            animation: drift 20s infinite linear alternate;
+        }
+        @keyframes drift {
+            from { transform: translate(0, 0) rotate(0deg); }
+            to { transform: translate(100px, 50px) rotate(15deg); }
+        }
+
+        /* VORTEX ENGINE */
+        #vortex {
+            position: relative;
+            width: 100vw; height: 100vh;
+            transform-style: preserve-3d;
+        }
+
+        section {
+            position: absolute;
+            width: 100vw; height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+            padding: 0 10%;
+            transition: all 1s cubic-bezier(0.8, 0, 0.2, 1);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateZ(-2000px) rotateY(45deg);
+        }
+
+        section.active {
+            opacity: 1; pointer-events: auto;
+            transform: translateZ(0) rotateY(0deg);
+        }
+
+        section.exit {
+            opacity: 0;
+            transform: translateZ(1500px) rotateX(-20deg);
+        }
+
+        .glass-card {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(50px);
+            padding: 50px;
+            border: 1px solid var(--gold-main);
+            box-shadow: 0 0 100px rgba(0,0,0,0.9);
+            max-width: 1100px;
+            max-height: 85vh;
+            overflow-y: auto;
+            border-radius: 5px;
+        }
+
+        /* TYPOGRAPHY */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 7rem;
+            text-align: center;
+            background: linear-gradient(to bottom, #fff, var(--gold-main), #554411);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+            line-height: 0.9;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold-main);
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            letter-spacing: 5px;
+        }
+
+        p { font-size: 1.2rem; line-height: 1.7; margin-bottom: 15px; text-align: justify; color: #f0f0f0; }
+        .highlight { color: var(--gold-bright); font-weight: 900; }
+
+        /* REFERENCE LIST STYLING */
+        .ref-section {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .ref-section h3 {
+            color: var(--gold-bright);
+            font-size: 1.1rem;
+            margin: 15px 0 10px 0;
+            border-bottom: 1px solid var(--gold-deep);
+            padding-bottom: 5px;
+        }
+        .ref-link {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            transition: 0.3s;
+            cursor: pointer !important; /* Forces cursor to look interactable */
+        }
+        .ref-link:hover {
+            color: var(--gold-main);
+            transform: translateX(10px);
+        }
+
+        /* CONTROLS */
+        .controls {
+            position: fixed;
+            bottom: 40px; width: 100%;
+            display: flex; justify-content: center; gap: 40px;
+            z-index: 2000;
+        }
+
+        .btn {
+            background: black;
+            border: 2px solid var(--gold-main);
+            color: var(--gold-main);
+            padding: 15px 40px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn:hover {
+            background: var(--gold-main);
+            color: black;
+            box-shadow: 0 0 30px var(--gold-main);
+        }
+
+        /* Scrollbar for references */
+        .glass-card::-webkit-scrollbar { width: 5px; }
+        .glass-card::-webkit-scrollbar-thumb { background: var(--gold-main); }
+    </style>
+</head>
+<body>
+
+    <div id="cursor"></div>
+    <div class="frame-layer frame-1"></div>
+    <div class="frame-layer frame-2"></div>
+    <div class="corner tl"></div>
+    <div class="corner br"></div>
+
+    <div class="deco-panel" style="width: 400px; height: 400px; top: 10%; left: -5%;"></div>
+    <div class="deco-panel" style="width: 300px; height: 600px; bottom: 10%; right: -5%;"></div>
+
+    <div id="vortex">
+        <section class="active">
+            <div>
+                <h1>RACIAL<br>IDEOLOGY</h1>
+                <p style="text-align: center; letter-spacing: 15px; color: var(--gold-main); font-weight: 900; margin-top: 20px;">1920s VS 2020s</p>
+                <p style="text-align: center; margin-top: 20px; opacity: 0.6;">BY SALMA, YUAN, YOUSSEF, MARYAM</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="glass-card">
+                <h2>I. 1920s RACISM</h2>
+                <p>In the 1920s, racism was a normal and accepted part of American life. Many people believed white Americans were better than others, and this belief was supported by the government and society. <span class="highlight">Jim Crow laws</span> forced Black Americans to live separately and gave them fewer rights, especially in the South. Racism was not hidden—it was open and legal.</p>
+                <p>Groups like the <span class="highlight">Ku Klux Klan</span> became very powerful and spread racist ideas across the country. They used fear and violence to push their beliefs that America should only belong to white Protestants.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="glass-card">
+                <h2>II. 2020s SYSTEMIC</h2>
+                <p>Today, racism looks different. Laws no longer allow segregation, but inequality still exists in less obvious ways. This is called <span class="highlight">systemic racism</span>. It means that unfair treatment is built into systems like housing, schools, and jobs, even if no one says racist things out loud.</p>
+                <p>For example, neighborhoods treated unfairly in the past often still have worse schools today. Because of this, race still affects how easy or hard it is for someone to move up in life.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="glass-card">
+                <h2>III. THE DREAM</h2>
+                <p>The <span class="highlight">American Dream</span> is the idea that anyone can succeed if they work hard enough. In the 1920s, this mostly applied to white Americans. In the 2020s, the Dream is more inclusive in theory, but not in reality. Some people start life with more advantages than others. It can feel like some are running a race with no obstacles, while others have many barriers in their way.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="glass-card">
+                <h2>IV. GATSBY CONNECTION</h2>
+                <p><span class="highlight">Tom Buchanan</span> represents the racist beliefs of the 1920s. He believes white people should stay in control and is scared of losing his power. Even though Gatsby is rich, he is still looked down on, proving that social status mattered more than hard work alone. This connects to today because power is still often protected by those who already have it.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="glass-card">
+                <h2>REFERENCES</h2>
+                <div class="ref-section">
+                    <h3>📜 1920s Historical Context & Racism</h3>
+                    <a class="ref-link" href="https://www.history.com/topics/early-20th-century-us/jim-crow-laws" target="_blank">History.com — Jim Crow laws and their impact</a>
+                    <a class="ref-link" href="https://americainclass.org/sources/becomingmodern/divisions/text1/text1.htm" target="_blank">National Humanities Center — KKK in the 1920s</a>
+                    <a class="ref-link" href="https://cnu.libguides.com/1920s/race" target="_blank">CNU LibGuides — Race and ethnicity in the 1920s</a>
+                    <a class="ref-link" href="http://cdr.lib.unc.edu" target="_blank">UNC Research — Racist laws & Racial Integrity Act</a>
+                    <a class="ref-link" href="https://press.uchicago.edu/ucp/books/book/chicago/K/bo23720308.html" target="_blank">Ku Klux Kulture — America and the Klan</a>
+                    <a class="ref-link" href="https://www.loc.gov/classroom-materials/jim-crow-segregation/" target="_blank">Library of Congress — Jim Crow and Segregation</a>
+                    <a class="ref-link" href="https://nmaahc.si.edu/explore/stories/jim-crow-laws" target="_blank">Smithsonian NMAAHC — Jim Crow Era</a>
+                    <a class="ref-link" href="https://www.pbs.org/wgbh/americanexperience/features/freedom-riders-jim-crow-laws/" target="_blank">PBS — Jim Crow Laws and Racial Segregation</a>
+                    <a class="ref-link" href="https://www.loc.gov/collections/great-migration/about-this-collection/" target="_blank">Library of Congress — Great Migration & Race</a>
+
+                    <h3>📊 Modern Structural Racism & Inequality</h3>
+                    <a class="ref-link" href="https://www.apha.org/policy-and-advocacy/public-health-policy-briefs/policy-database/2021/01/13/structural-racism-is-a-public-health-crisis" target="_blank">APHA — Structural racism explained</a>
+                    <a class="ref-link" href="https://www.ama-assn.org/public-health/health-equity/what-structural-racism" target="_blank">AMA — Impacts of structural racism</a>
+                    <a class="ref-link" href="https://arxiv.org/abs/2109.12491" target="_blank">Research — Police presence and racial disparities</a>
+                    <a class="ref-link" href="https://www.cambridge.org/core/journals/journal-of-race-ethnicity-and-politics/article/american-dream-versus-american-reality-how-information-about-structural-racism-can-prompt-support-for-racebased-policies/FD6CF58A73C34772E3492A00DE61DB02" target="_blank">Cambridge University Press — American Dream vs Reality</a>
+                    <a class="ref-link" href="https://www.pewresearch.org/social-trends/2019/04/09/views-of-racial-inequality/" target="_blank">Pew Research — Views on Racial Inequality</a>
+                    <a class="ref-link" href="https://www.brookings.edu/topics/race-in-america/" target="_blank">Brookings Institution — Race, Inequality, and Opportunity</a>
+                    <a class="ref-link" href="https://www.naacp.org/find-resources/history-explained/" target="_blank">NAACP — History of Race and Racism</a>
+                    
+                    <h3>📖 Literature</h3>
+                    <p style="font-size: 0.85rem; color: #ccc;">Fitzgerald, F. Scott. The Great Gatsby. Charles Scribner’s Sons, 1925.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="prev()">Back</button>
+        <button class="btn" onclick="next()">Proceed</button>
+    </div>
+
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Vortex Control
+        let idx = 0;
+        const sections = document.querySelectorAll('section');
+
+        function next() {
+            if (idx < sections.length - 1) {
+                sections[idx].classList.remove('active');
+                sections[idx].classList.add('exit');
+                idx++;
+                sections[idx].classList.add('active');
+            }
+        }
+
+        function prev() {
+            if (idx > 0) {
+                sections[idx].classList.remove('active');
+                idx--;
+                sections[idx].classList.remove('exit');
+                sections[idx].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
